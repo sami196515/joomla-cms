@@ -57,6 +57,12 @@ class ContentHelper
 	public static function countRelations(&$items, $config)
 	{
 		$db = Factory::getDbo();
+		
+		// When no relation table is given, return here
+		if (!isset($config->related_tbl))
+		{
+			return $items;
+		}
 
 		// Allow custom state / condition values and custom column names to support custom components
 		$counter_names = isset($config->counter_names) ? $config->counter_names : array(
